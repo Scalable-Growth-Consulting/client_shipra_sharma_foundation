@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipra Sharma Foundation | Empowering Girls, Transforming India</title>
+    <meta name="description" content="The Shipra Sharma Foundation focuses on empowering underprivileged girls in India through education and community support.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #F37021; /* Extracted from Logo */
+            --primary-dark: #d35f15;
+            --text-dark: #2c3e50;
+            --text-light: #666;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #F37021 0%, #ff9f43 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(243, 112, 33, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(243, 112, 33, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 60px; /* Adjust based on logo appearance */
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            /* EXPERT DESIGN CHOICE: 
+               We use a linear gradient overlay (rgba 0,0,0,0.7 to 0.4) on top of the image.
+               This ensures white text is perfectly readable regardless of the image brightness.
+            */
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.45)), 
+                        url('https://res.cloudinary.com/dytzdz6u8/image/upload/v1766909382/afgjlg5flmexlk3gqaha.png');
+            background-size: cover;
+            background-position: center;
+            /* Parallax effect for desktop */
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        /* Mobile fallback for background attachment to prevent jitter */
+        @media (hover: none) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Subtle shadow for extra legibility */
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* --- IMPACT STATS --- */
+        .stats-section {
+            padding: 60px 0;
+            background: var(--white);
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- ABOUT --- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .about-image img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- PROGRAMS --- */
+        .programs-section {
+            background-color: var(--bg-light);
+        }
+
+        .program-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid transparent;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .program-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .program-card p {
+            color: var(--text-light);
+        }
+
+        /* --- JOIN MOVEMENT / SOCIAL --- */
+        .cta-section {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            background: var(--white);
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #999;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { order: -1; }
+            .stats-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="https://res.cloudinary.com/dytzdz6u8/image/upload/v1766910113/logo_ix2syc.jpg" alt="Shipra Sharma Foundation Logo" class="logo-img">
+                    <h3 style="font-size: 1.2rem; line-height: 1.2;">Shipra Sharma<br><span style="color: var(--primary-color);">Foundation</span></h3>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">About Us</a>
+                    <a href="#programs">Our Programs</a>
+                    <a href="#impact">Impact</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <a href="#contact" class="btn btn-primary">Donate Now</a>
+                    <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Empowering Girls.<br>Transforming Communities.</h1>
+            <p>Every girl deserves the right to education, dignity, and a future. Join the Shipra Sharma Foundation in creating a ripple effect of change across India.</p>
+            <div style="margin-top: 20px;">
+                <a href="#programs" class="btn btn-primary">Our Mission</a>
+                <a href="#contact" class="btn btn-outline" style="border-color: #fff; color: #fff; margin-left: 10px;">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Girls Educated</p>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="counter" data-target="12">0</h3>
+                    <p>Schools Supported</p>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="counter" data-target="50">0</h3>
+                    <p>Workshops Held</p>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="counter" data-target="1000">0</h3>
+                    <p>Lives Impacted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text" data-aos="fade-right">
+                    <h4 style="color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</h4>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Building a Foundation of Hope</h2>
+                    <p>The Shipra Sharma Foundation is driven by a singular belief: <strong>Education is the most powerful tool for social change.</strong></p>
+                    <p>Based in India, we work tirelessly to bridge the gap for underprivileged girls who are often left behind. By providing resources, mentorship, and safe learning environments, we aren't just teaching subjects; we are building confidence and nurturing the leaders of tomorrow.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 10px;">Read Our Story</a>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <!-- Using a high quality placeholder representing the cause -->
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2132&auto=format&fit=crop" alt="Girls learning in a classroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="section-padding programs-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Pillars of Change</h2>
+                <p style="color: var(--text-light);">How we are making a tangible difference every day.</p>
+            </div>
+            
+            <div class="program-cards">
+                <div class="program-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="program-icon"><i class="fas fa-book-reader"></i></div>
+                    <h3>Literacy & Education</h3>
+                    <p>Providing books, tuition fees, and stationery to ensure no girl drops out of school due to financial constraints.</p>
+                </div>
+                
+                <div class="program-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Skill Workshops</h3>
+                    <p>Beyond the classroom, we teach life skills, digital literacy, and vocational training to foster independence.</p>
+                </div>
+                
+                <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Mentorship & Support</h3>
+                    <p>Connecting young girls with successful female role models to inspire ambitions and guide career paths.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / CTA -->
+    <section id="impact" class="cta-section">
+        <div class="container" data-aos="zoom-in">
+            <h2>Join Our Movement</h2>
+            <p style="max-width: 600px; margin: 20px auto;">Follow our journey on social media to see the real faces behind the numbers. Your support fuels our growth.</p>
+            
+            <div class="social-icons">
+                <a href="https://x.com/Shiprasharmaorg" target="_blank" title="Follow us on X"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/p/DSkhlFAj1_5/" target="_blank" title="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Support Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch & Support</h2>
+                <p>Have questions or want to volunteer? Send us a message.</p>
+            </div>
+
+            <div class="contact-form-container" data-aos="fade-up">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="How can we help you? (Or how would you like to help?)" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Shipra Sharma Foundation</h4>
+                    <p>Empowering the next generation of women leaders in India through education, integrity, and community action.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@shiprasharmafoundation.org</li>
+                        <li><i class="fas fa-phone"></i> +91 123 456 7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Shipra Sharma Foundation. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            offset: 120,
+            duration: 1000,
+            once: true,
+        });
+
+        // Form Handling
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Sending...';
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                alert('Thank you for reaching out! We will get back to you shortly.');
+                form.reset();
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+            }, 1500);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Number Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target + "+";
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Trigger counter animation when section is in view
+        let counted = false;
+        const statsSection = document.querySelector('.stats-section');
+        
+        window.addEventListener('scroll', () => {
+            if(!counted && window.scrollY > statsSection.offsetTop - window.innerHeight + 100) {
+                animateCounters();
+                counted = true;
+            }
+        });
+    </script>
+</body>
+</html>
